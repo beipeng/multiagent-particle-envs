@@ -174,26 +174,26 @@ class MultiAgentEnv(gym.Env):
                     agent.action.u[0] += action[0][1] - action[0][2]
                     agent.action.u[1] += action[0][3] - action[0][4]
                 else:
-                    # NOTE: This was changed to make simple_reference scenario work with pymarl
-                    # agent.action.u = action[0]
-                    agent.action.u = action[0][:self.world.dim_p]
+                    # NOTE: This needs to be changed to make simple_reference scenario work with pymarl
+                    agent.action.u = action[0]
+                    # agent.action.u = action[0][:self.world.dim_p]
             sensitivity = 5.0
             if agent.accel is not None:
                 sensitivity = agent.accel
             agent.action.u *= sensitivity
-            # NOTE: This was changed to make simple_reference scenario work with pymarl
-            # action = action[1:]
-            if agent.silent:
-                action = action[1:]
+            # NOTE: This needs to be changed to make simple_reference scenario work with pymarl
+            action = action[1:]
+            # if agent.silent:
+            #     action = action[1:]
         if not agent.silent:
             # communication action
             if self.discrete_action_input:
                 agent.action.c = np.zeros(self.world.dim_c)
                 agent.action.c[action[0]] = 1.0
             else:
-                # NOTE: This was changed to make simple_reference scenario work with pymarl
-                # agent.action.c = action[0]
-                agent.action.c = action[0][self.world.dim_p:self.world.dim_p+self.world.dim_c]
+                # NOTE: This needs to be changed to make simple_reference scenario work with pymarl
+                agent.action.c = action[0]
+                # agent.action.c = action[0][self.world.dim_p:self.world.dim_p+self.world.dim_c]
             action = action[1:]
         # make sure we used all elements of action
         assert len(action) == 0
