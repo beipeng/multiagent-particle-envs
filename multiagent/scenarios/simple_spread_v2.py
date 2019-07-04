@@ -8,8 +8,8 @@ class Scenario(BaseScenario):
         world = World()
         # set any world properties first
         world.dim_c = 2
-        num_agents = 2
-        num_landmarks = 2
+        num_agents = 4
+        num_landmarks = 4
         world.collaborative = True
         # add agents
         world.agents = [Agent() for i in range(num_agents)]
@@ -31,10 +31,10 @@ class Scenario(BaseScenario):
     def reset_world(self, world):
         # random properties for agents
         for i, agent in enumerate(world.agents):
-            agent.color = np.array([0.35, 0.35])
+            agent.color = np.array([0.35, 0.35, 0.85])
         # random properties for landmarks
         for i, landmark in enumerate(world.landmarks):
-            landmark.color = np.array([0.25, 0.25])
+            landmark.color = np.array([0.25, 0.25, 0.25])
         # set random initial states
         for agent in world.agents:
             agent.state.p_pos = np.random.uniform(-1, +1, world.dim_p)
